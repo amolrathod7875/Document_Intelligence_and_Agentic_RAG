@@ -1,1 +1,3 @@
 uploads/*.pdf
+processed_text/*.txt
+page_images/*.png
