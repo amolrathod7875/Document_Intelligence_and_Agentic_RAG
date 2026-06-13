@@ -110,7 +110,12 @@ export default function BulkUploadPage() {
               <tbody className="text-sm divide-y divide-slate-100">
                 {Object.entries(statuses).map(([name, item]) => (
                   <tr key={name} className="hover:bg-slate-50/70 transition">
-                    <td className="p-3 font-medium text-slate-800 truncate max-w-xs">{name}</td>
+                    <td className="p-3 font-medium text-slate-800 truncate max-w-xs">
+                      <div>{name}</div>
+                      {item.status === 'failed' && item.details && (
+                        <div className="text-red-600 text-xs mt-1">{item.details}</div>
+                      )}
+                    </td>
                     <td className="p-3">
                       <span className={`px-2.5 py-1 text-xs font-bold border rounded-full ${getStatusBadgeColor(item.status)}`}>
                         {item.status.toUpperCase()}
