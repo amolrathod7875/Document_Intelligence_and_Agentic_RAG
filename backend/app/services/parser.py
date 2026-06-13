@@ -60,7 +60,7 @@ class DocumentParserService:
                 
                 # Content harvesting
                 raw_text = page.extract_text() or ""
-                structured_tables = cls._extract_tables_as_markdown(page) [cite: 40]
+                structured_tables = cls._extract_tables_as_markdown(page)  # [cite: 40]
                 
                 # Check if it's a scanned document or handwriting to trigger OCR fallback [cite: 7]
                 if len(raw_text.strip()) < 50:

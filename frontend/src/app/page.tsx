@@ -138,7 +138,7 @@ export default function ChatbotDashboardPage() {
             value={inputValue} 
             onChange={(e) => setInputValue(e.target.value)} 
             placeholder={isListening ? "Listening... Speak clearly now." : "Ask a question about your documents..."} 
-            className={`w-full pl-4 pr-12 py-3 rounded-xl border focus:outline-hidden focus:ring-2 focus:ring-indigo-500 bg-white text-sm shadow-xs transition ${
+            className={`w-full pl-4 pr-12 py-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-sm shadow-xs transition ${
               isListening ? 'border-red-400 ring-2 ring-red-100 placeholder-red-400' : 'border-slate-300'
             }`}
           />

@@ -22,7 +22,7 @@ async def conversational_rag_query(payload: ChatRequestSchema):
     rag_agent = AgenticRAGService()
     
     # Restructure Pydantic models back to pristine generic lists for processing compatibility
-    formatted_history = [{"role": turn.role, "role": turn.role, "content": turn.content} for turn in payload.history] if payload.history else []
+    formatted_history = [{"role": turn.role, "content": turn.content} for turn in payload.history] if payload.history else []
     
     response = await rag_agent.answer_question(payload.query, chat_history=formatted_history)
     return response
