@@ -14,10 +14,9 @@ export const api = {
   },
 
   async getUploadStatus(): Promise<Record<string, any>> {
-    // Note: This endpoint is not yet implemented in the backend
-    // TODO: Implement POST /api/upload/status endpoint in backend
-    // For now, return empty object
-    return {};
+    const response = await fetch(`${BACKEND_URL}/api/upload/status`);
+    if (!response.ok) throw new Error('Failed to retrieve processing metrics.');
+    return response.json();
   },
 
   async sendChatMessage(query: string, history: Array<{ role: string; content: string }>) {

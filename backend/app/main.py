@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 from app.core.config import settings
 from app.api import upload, chat
 
@@ -40,6 +41,11 @@ async def execution_health_check():
         }
     }
 
+@app.get("/", include_in_schema=False)
+async def root_redirect():
+    """Redirect root to the interactive API docs for convenience."""
+    return RedirectResponse(url="/docs")
+
 if __name__ == "__main__":
     # Standard engineering debug utility entry point
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
