@@ -82,7 +82,23 @@ class AgenticRAGService:
                 )
                 response.raise_for_status()
                 result = response.json()
-                answer_text = result["choices"][0]["message"]["content"].strip()
+                choices = result.get("choices") or []
+                if not choices:
+                    raise ValueError(f"LLM response did not include any choices: {result}")
+
+                first_choice = choices[0] or {}
+                message = first_choice.get("message") or {}
+                answer_text = (
+                    message.get("content")
+                    or first_choice.get("text")
+                    or message.get("output")
+                    or message.get("reasoning_content")
+                )
+
+                if not answer_text:
+                    raise ValueError(f"LLM response did not include answer text: {result}")
+
+                answer_text = str(answer_text).strip()
                 
             except Exception as e:
                 return {

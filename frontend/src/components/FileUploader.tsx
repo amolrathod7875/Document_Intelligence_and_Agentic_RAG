@@ -29,6 +29,9 @@ export default function FileUploader({
       <label htmlFor="file-input" className="cursor-pointer">
         Drag & drop files here, or click to browse
       </label>
+      <div className="mt-3 text-xs text-slate-500">
+        {isUploading ? 'Uploading...' : `${selectedFiles.length} files selected`}
+      </div>
     </div>
   );
 }
